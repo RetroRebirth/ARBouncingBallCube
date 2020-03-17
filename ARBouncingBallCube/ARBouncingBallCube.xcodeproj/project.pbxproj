@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B6A55052420FA0200DE9672 /* GroundEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A55042420FA0200DE9672 /* GroundEntity.swift */; };
 		4B79E2532420BDC4004E7CD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2522420BDC4004E7CD0 /* AppDelegate.swift */; };
 		4B79E2552420BDC4004E7CD0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2542420BDC4004E7CD0 /* ContentView.swift */; };
 		4B79E2572420BDC4004E7CD0 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2562420BDC4004E7CD0 /* Experience.rcproject */; };
@@ -15,6 +16,19 @@
 		4B79E25F2420BDC5004E7CD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B79E25D2420BDC5004E7CD0 /* LaunchScreen.storyboard */; };
 		4B79E26A2420BDC6004E7CD0 /* ARBouncingBallCubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2692420BDC6004E7CD0 /* ARBouncingBallCubeTests.swift */; };
 		4B79E2752420BDC6004E7CD0 /* ARBouncingBallCubeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2742420BDC6004E7CD0 /* ARBouncingBallCubeUITests.swift */; };
+		4B79E2832420C542004E7CD0 /* MyARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2822420C542004E7CD0 /* MyARView.swift */; };
+		4B79E2842420C542004E7CD0 /* MyARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2822420C542004E7CD0 /* MyARView.swift */; };
+		4B79E2852420C542004E7CD0 /* MyARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2822420C542004E7CD0 /* MyARView.swift */; };
+		4B79E2C32420D6DF004E7CD0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2C22420D6DF004E7CD0 /* Extensions.swift */; };
+		4B79E2C42420D6DF004E7CD0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2C22420D6DF004E7CD0 /* Extensions.swift */; };
+		4B79E2C52420D6DF004E7CD0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2C22420D6DF004E7CD0 /* Extensions.swift */; };
+		4B79E2C72420DA9C004E7CD0 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2C62420DA9C004E7CD0 /* Const.swift */; };
+		4B79E2C82420DA9C004E7CD0 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2C62420DA9C004E7CD0 /* Const.swift */; };
+		4B79E2C92420DA9C004E7CD0 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2C62420DA9C004E7CD0 /* Const.swift */; };
+		4B79E2CB2420E194004E7CD0 /* MyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2CA2420E194004E7CD0 /* MyEntity.swift */; };
+		4B79E2CC2420E194004E7CD0 /* MyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2CA2420E194004E7CD0 /* MyEntity.swift */; };
+		4B79E2CD2420E194004E7CD0 /* MyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2CA2420E194004E7CD0 /* MyEntity.swift */; };
+		4B981419242102400044CD03 /* OriginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B981418242102400044CD03 /* OriginEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B6A55042420FA0200DE9672 /* GroundEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundEntity.swift; sourceTree = "<group>"; };
 		4B79E24F2420BDC4004E7CD0 /* ARBouncingBallCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARBouncingBallCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B79E2522420BDC4004E7CD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B79E2542420BDC4004E7CD0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +64,11 @@
 		4B79E2702420BDC6004E7CD0 /* ARBouncingBallCubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARBouncingBallCubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B79E2742420BDC6004E7CD0 /* ARBouncingBallCubeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBouncingBallCubeUITests.swift; sourceTree = "<group>"; };
 		4B79E2762420BDC6004E7CD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B79E2822420C542004E7CD0 /* MyARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyARView.swift; sourceTree = "<group>"; };
+		4B79E2C22420D6DF004E7CD0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4B79E2C62420DA9C004E7CD0 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		4B79E2CA2420E194004E7CD0 /* MyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEntity.swift; sourceTree = "<group>"; };
+		4B981418242102400044CD03 /* OriginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +96,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B6A55062420FA1000DE9672 /* CustomEntities */ = {
+			isa = PBXGroup;
+			children = (
+				4B6A55042420FA0200DE9672 /* GroundEntity.swift */,
+				4B79E2CA2420E194004E7CD0 /* MyEntity.swift */,
+				4B981418242102400044CD03 /* OriginEntity.swift */,
+			);
+			path = CustomEntities;
+			sourceTree = "<group>";
+		};
 		4B79E2462420BDC4004E7CD0 = {
 			isa = PBXGroup;
 			children = (
@@ -100,11 +130,15 @@
 			isa = PBXGroup;
 			children = (
 				4B79E2522420BDC4004E7CD0 /* AppDelegate.swift */,
-				4B79E2542420BDC4004E7CD0 /* ContentView.swift */,
-				4B79E2562420BDC4004E7CD0 /* Experience.rcproject */,
 				4B79E2582420BDC5004E7CD0 /* Assets.xcassets */,
-				4B79E25D2420BDC5004E7CD0 /* LaunchScreen.storyboard */,
+				4B79E2C62420DA9C004E7CD0 /* Const.swift */,
+				4B79E2542420BDC4004E7CD0 /* ContentView.swift */,
+				4B6A55062420FA1000DE9672 /* CustomEntities */,
+				4B79E2562420BDC4004E7CD0 /* Experience.rcproject */,
+				4B79E2C22420D6DF004E7CD0 /* Extensions.swift */,
 				4B79E2602420BDC5004E7CD0 /* Info.plist */,
+				4B79E25D2420BDC5004E7CD0 /* LaunchScreen.storyboard */,
+				4B79E2822420C542004E7CD0 /* MyARView.swift */,
 				4B79E25A2420BDC5004E7CD0 /* Preview Content */,
 			);
 			path = ARBouncingBallCube;
@@ -267,9 +301,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B79E2C32420D6DF004E7CD0 /* Extensions.swift in Sources */,
+				4B6A55052420FA0200DE9672 /* GroundEntity.swift in Sources */,
+				4B981419242102400044CD03 /* OriginEntity.swift in Sources */,
+				4B79E2832420C542004E7CD0 /* MyARView.swift in Sources */,
 				4B79E2552420BDC4004E7CD0 /* ContentView.swift in Sources */,
 				4B79E2532420BDC4004E7CD0 /* AppDelegate.swift in Sources */,
 				4B79E2572420BDC4004E7CD0 /* Experience.rcproject in Sources */,
+				4B79E2CB2420E194004E7CD0 /* MyEntity.swift in Sources */,
+				4B79E2C72420DA9C004E7CD0 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B79E2842420C542004E7CD0 /* MyARView.swift in Sources */,
+				4B79E2C82420DA9C004E7CD0 /* Const.swift in Sources */,
+				4B79E2C42420D6DF004E7CD0 /* Extensions.swift in Sources */,
+				4B79E2CC2420E194004E7CD0 /* MyEntity.swift in Sources */,
 				4B79E26A2420BDC6004E7CD0 /* ARBouncingBallCubeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +329,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B79E2852420C542004E7CD0 /* MyARView.swift in Sources */,
+				4B79E2C92420DA9C004E7CD0 /* Const.swift in Sources */,
+				4B79E2C52420D6DF004E7CD0 /* Extensions.swift in Sources */,
+				4B79E2CD2420E194004E7CD0 /* MyEntity.swift in Sources */,
 				4B79E2752420BDC6004E7CD0 /* ARBouncingBallCubeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

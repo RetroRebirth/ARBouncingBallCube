@@ -18,11 +18,7 @@ struct ContentView : View {
 struct ARViewContainer: UIViewRepresentable {
     
     func makeUIView(context: Context) -> ARView {
-        
-        let arView = ARView(frame: .zero)
-        
-        return arView
-        
+        return MyARView()
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {}
