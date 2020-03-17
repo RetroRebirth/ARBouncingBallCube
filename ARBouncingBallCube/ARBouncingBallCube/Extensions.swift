@@ -17,7 +17,7 @@ extension SIMD3 {
 }
 
 extension ARView.DebugOptions {
-    #if arch(arm64)
+    #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
     public static var all: ARView.DebugOptions { get { return ARView.DebugOptions(arrayLiteral: .showAnchorGeometry, .showAnchorOrigins, .showFeaturePoints, .showPhysics, .showStatistics, .showWorldOrigin) } }
     #else
     public static var all: ARView.DebugOptions { get { return ARView.DebugOptions(arrayLiteral: .showPhysics, .showStatistics) } }

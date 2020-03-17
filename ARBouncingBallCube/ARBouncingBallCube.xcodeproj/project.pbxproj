@@ -69,6 +69,7 @@
 		4B79E2C62420DA9C004E7CD0 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		4B79E2CA2420E194004E7CD0 /* MyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEntity.swift; sourceTree = "<group>"; };
 		4B981418242102400044CD03 /* OriginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginEntity.swift; sourceTree = "<group>"; };
+		4BCBDE4B2421775200E57C02 /* ARBouncingBallCube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARBouncingBallCube.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				4B79E2522420BDC4004E7CD0 /* AppDelegate.swift */,
+				4BCBDE4B2421775200E57C02 /* ARBouncingBallCube.entitlements */,
 				4B79E2582420BDC5004E7CD0 /* Assets.xcassets */,
 				4B79E2C62420DA9C004E7CD0 /* Const.swift */,
 				4B79E2542420BDC4004E7CD0 /* ContentView.swift */,
@@ -482,7 +484,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ARBouncingBallCube/ARBouncingBallCube.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ARBouncingBallCube/Preview Content\"";
 				DEVELOPMENT_TEAM = L9GDAR3R36;
 				ENABLE_PREVIEWS = YES;
@@ -493,6 +497,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.ARBouncingBallCube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -502,7 +507,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ARBouncingBallCube/ARBouncingBallCube.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ARBouncingBallCube/Preview Content\"";
 				DEVELOPMENT_TEAM = L9GDAR3R36;
 				ENABLE_PREVIEWS = YES;
@@ -513,6 +520,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.ARBouncingBallCube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

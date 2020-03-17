@@ -11,7 +11,9 @@ import RealityKit
 import Combine
 import CoreGraphics
 import UIKit
+#if !targetEnvironment(macCatalyst)
 import ARKit
+#endif
 
 class MyARView: ARView {
     /// Class consts
@@ -30,8 +32,8 @@ class MyARView: ARView {
         // Enable debug overlay
         debugOptions = .important
         
-        // Disable AR on startup
-        #if arch(arm64)
+        // Disable AR on startup (on iOS device only)
+        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
         self.cameraMode = .nonAR
         #endif
         
@@ -90,7 +92,7 @@ class MyARView: ARView {
         print("swiped")
         #endif
         // Switch between AR and VR
-        #if arch(arm64)
+        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
         if self.cameraMode == .ar {
             self.cameraMode = .nonAR
         } else {
