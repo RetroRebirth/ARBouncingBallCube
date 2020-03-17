@@ -130,6 +130,7 @@
 		4B79E2512420BDC4004E7CD0 /* ARBouncingBallCube */ = {
 			isa = PBXGroup;
 			children = (
+				4BCBDE4C24217CB200E57C02 /* Assets */,
 				4B79E2522420BDC4004E7CD0 /* AppDelegate.swift */,
 				4BCBDE4B2421775200E57C02 /* ARBouncingBallCube.entitlements */,
 				4B79E2582420BDC5004E7CD0 /* Assets.xcassets */,
@@ -170,6 +171,13 @@
 				4B79E2762420BDC6004E7CD0 /* Info.plist */,
 			);
 			path = ARBouncingBallCubeUITests;
+			sourceTree = "<group>";
+		};
+		4BCBDE4C24217CB200E57C02 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
