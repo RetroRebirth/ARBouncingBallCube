@@ -17,7 +17,7 @@ struct Const {
     }
     struct Size {
         static let mine:Float = 0.1
-        static let ground:Float = 10
+        static let ground:Float = 1
     }
     struct Physics {
         struct Friction {

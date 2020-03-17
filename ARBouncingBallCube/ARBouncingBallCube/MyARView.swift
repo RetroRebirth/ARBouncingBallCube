@@ -31,7 +31,9 @@ class MyARView: ARView {
         debugOptions = .important
         
         // Disable AR on startup
+        #if arch(arm64)
         self.cameraMode = .nonAR
+        #endif
         
         // Add initial entities to anchor, then anchor to scene
         anchor.children.append(OriginEntity())
@@ -88,10 +90,12 @@ class MyARView: ARView {
         print("swiped")
         #endif
         // Switch between AR and VR
+        #if arch(arm64)
         if self.cameraMode == .ar {
             self.cameraMode = .nonAR
         } else {
             self.cameraMode = .ar
         }
+        #endif
     }
 }
