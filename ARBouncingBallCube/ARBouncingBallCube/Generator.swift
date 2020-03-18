@@ -17,6 +17,7 @@ class Generator {
         pc.camera.fieldOfViewInDegrees = fieldOfViewInDegrees
         pc.camera.near = near
         
+        pc.name = Const.Name.camera
         pc.transform.translation = .behind
         
         return pc

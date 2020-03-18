@@ -14,6 +14,7 @@ struct Const {
         static let origin:String = "origin"
         static let target:String = "target"
         static let rc:String = "Steel Box"
+        static let camera:String = "camera"
     }
     struct Size {
         static let mine:Float = 0.1

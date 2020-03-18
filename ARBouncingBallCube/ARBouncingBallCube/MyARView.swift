@@ -11,7 +11,7 @@ import RealityKit
 import Combine
 import CoreGraphics
 import UIKit
-#if !targetEnvironment(macCatalyst)
+#if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
 import ARKit
 #endif
 
@@ -39,17 +39,7 @@ class MyARView: ARView {
         backgroundColor = .black
         #endif
         
-        // Add initial entities to anchor, then anchor to scene
-        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
-        if cameraMode == .nonAR {
-            anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
-        }
-        #else
-        anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
-        #endif
-        anchor.children.append(OriginEntity())
-        anchor.children.append(contentsOf: Generator.generateTargets())
-        scene.anchors.append(anchor)
+        addInitialEntities()
         
         // Subscribe to events
         scene.subscribe(to: SceneEvents.AnchoredStateChanged.self, anchorStateChanged).store(in: &streams)
@@ -106,10 +96,26 @@ class MyARView: ARView {
         if cameraMode == .ar {
             cameraMode = .nonAR
             anchor.scale = SIMD3<Float>(repeating: Const.Size.vr)
+            anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
         } else {
             cameraMode = .ar
             anchor.scale = SIMD3<Float>(repeating: Const.Size.ar)
+            anchor.removeChild(anchor.findEntity(named: Const.Name.camera)!)
         }
         #endif
+    }
+    
+    /// Add initial entities to anchor, then anchor to scene.
+    func addInitialEntities() {
+        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
+        if cameraMode == .nonAR {
+            anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
+        }
+        #else
+        anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
+        #endif
+        anchor.children.append(OriginEntity())
+        anchor.children.append(contentsOf: Generator.generateTargets())
+        scene.anchors.append(anchor)
     }
 }
