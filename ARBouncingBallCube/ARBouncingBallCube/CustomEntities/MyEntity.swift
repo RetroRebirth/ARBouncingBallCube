@@ -13,7 +13,7 @@ class MyEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
     required init() {
         super.init()
         
-        let shape = ShapeResource.generateSphere(radius: Const.Size.mine)
+        let shape = ShapeResource.generateBox(size: SIMD3<Float>(repeating: Const.Size.mine))
         
         name = Const.Name.mine
         collision = CollisionComponent(shapes: [shape])
@@ -22,7 +22,7 @@ class MyEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
                                            material: PhysicsMaterialResource.generate(friction: Const.Physics.Friction.mine, restitution: Const.Physics.Restitution.mine),
                                            mode: .kinematic)
         physicsMotion = PhysicsMotionComponent()
-        model = ModelComponent(mesh: MeshResource.generateSphere(radius: Const.Size.mine), materials: [])
+        model = ModelComponent(mesh: MeshResource.generateBox(size: SIMD3<Float>(repeating: Const.Size.mine)), materials: [])
     }
     convenience init(_ velocityDir: SIMD3<Float>) {
         self.init()

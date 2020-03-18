@@ -48,7 +48,7 @@ class MyARView: ARView {
         anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
         #endif
         anchor.children.append(OriginEntity())
-        anchor.children.append(TargetEntity())
+        anchor.children.append(contentsOf: Generator.generateTargets())
         scene.anchors.append(anchor)
         
         // Subscribe to events

@@ -10,14 +10,15 @@ import Foundation
 
 struct Const {
     struct Name {
-        static let mine:String = "box"
-        static let target:String = "target"
+        static let mine:String = "mine"
         static let origin:String = "origin"
+        static let target:String = "target"
         static let rc:String = "Steel Box"
     }
     struct Size {
         static let mine:Float = 0.1
-        static let target:Float = 1
+        static let origin:Float = 0.1
+        static let target:Float = 0.5
         static let ar:Float = 0.1
         static let vr:Float = 1
     }

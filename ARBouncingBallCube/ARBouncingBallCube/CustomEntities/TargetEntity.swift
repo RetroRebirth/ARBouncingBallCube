@@ -21,7 +21,12 @@ class TargetEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
                                                 mass: 1,
                                                 material: PhysicsMaterialResource.generate(friction: Const.Physics.Friction.mine, restitution: Const.Physics.Restitution.mine),
                                                 mode: .static)
-        model = ModelComponent(mesh: MeshResource.generateBox(size: .flat * Const.Size.target), materials: [])
-        transform.translation = .down
+        model = ModelComponent(mesh: MeshResource.generateBox(size: Const.Size.target), materials: [])
+        transform.translation = .randTargetPos
+    }
+    convenience init(_ position:SIMD3<Float>) {
+        self.init()
+        
+        transform.translation = position
     }
 }

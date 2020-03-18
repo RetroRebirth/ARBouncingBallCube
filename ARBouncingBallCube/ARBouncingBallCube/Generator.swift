@@ -21,4 +21,13 @@ class Generator {
         
         return pc
     }
+    static func generateTargets(num:Int=10) -> [TargetEntity] {
+        var targets:[TargetEntity] = []
+        
+        for _ in 0..<num {
+            targets.append(TargetEntity())
+        }
+        
+        return targets
+    }
 }

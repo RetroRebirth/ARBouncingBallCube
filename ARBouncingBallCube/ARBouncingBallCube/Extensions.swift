@@ -12,9 +12,18 @@ import RealityKit
 extension SIMD3 {
     public static var up: SIMD3<Float> { get { return SIMD3<Float>(0, 1, 0) } }
     public static var down: SIMD3<Float> { get { return .up * -1 } }
+    public static var right: SIMD3<Float> { get { return SIMD3<Float>(1, 0, 0) } }
+    public static var left: SIMD3<Float> { get { return .right * -1 } }
     public static var behind: SIMD3<Float> { get { return SIMD3<Float>(0, 0, 1) } }
     public static var ahead: SIMD3<Float> { get { return .behind * -1 } }
     public static var flat: SIMD3<Float> { get { return SIMD3<Float>(1, 0, 1) } }
+    public static var rand: SIMD3<Float> { get { let r:ClosedRange<Float> = 0...1; return SIMD3<Float>(Float.random(in: r), Float.random(in: r), Float.random(in: r)) } }
+    public static var randTargetPos: SIMD3<Float> { get {
+        let rx:ClosedRange<Float> = -1...1
+        let ry:ClosedRange<Float> = rx
+        let rz:ClosedRange<Float> = (-Const.Camera.far)...(-5)
+        return SIMD3<Float>(Float.random(in: rx), Float.random(in: ry), Float.random(in: rz))
+        } }
 }
 
 extension ARView.DebugOptions {
