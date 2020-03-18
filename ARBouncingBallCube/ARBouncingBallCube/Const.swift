@@ -11,13 +11,13 @@ import Foundation
 struct Const {
     struct Name {
         static let mine:String = "box"
-        static let ground:String = "ground"
+        static let target:String = "target"
         static let origin:String = "origin"
         static let rc:String = "Steel Box"
     }
     struct Size {
         static let mine:Float = 0.1
-        static let ground:Float = 1
+        static let target:Float = 1
         static let ar:Float = 0.1
         static let vr:Float = 1
     }

@@ -9,19 +9,19 @@
 import Foundation
 import RealityKit
 
-class GroundEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
+class TargetEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
     required init() {
         super.init()
         
-        let shape = ShapeResource.generateBox(size: .flat * Const.Size.ground)
+        let shape = ShapeResource.generateBox(size: .flat * Const.Size.target)
         
-        name = Const.Name.ground
+        name = Const.Name.target
         collision = CollisionComponent(shapes: [shape])
         physicsBody = PhysicsBodyComponent(shapes: [shape],
                                                 mass: 1,
                                                 material: PhysicsMaterialResource.generate(friction: Const.Physics.Friction.mine, restitution: Const.Physics.Restitution.mine),
                                                 mode: .static)
-        model = ModelComponent(mesh: MeshResource.generateBox(size: .flat * Const.Size.ground), materials: [])
+        model = ModelComponent(mesh: MeshResource.generateBox(size: .flat * Const.Size.target), materials: [])
         transform.translation = .down
     }
 }
