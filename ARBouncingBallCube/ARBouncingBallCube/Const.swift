@@ -18,6 +18,8 @@ struct Const {
     struct Size {
         static let mine:Float = 0.1
         static let ground:Float = 1
+        static let ar:Float = 0.1
+        static let vr:Float = 1
     }
     struct Physics {
         struct Friction {

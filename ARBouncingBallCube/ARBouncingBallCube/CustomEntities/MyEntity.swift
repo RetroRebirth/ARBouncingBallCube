@@ -15,13 +15,17 @@ class MyEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
         
         let shape = ShapeResource.generateSphere(radius: Const.Size.mine)
         
-        self.name = Const.Name.mine
-        self.collision = CollisionComponent(shapes: [shape])
-        self.physicsBody = PhysicsBodyComponent(shapes: [shape],
-                                                mass: 1,
-                                                material: PhysicsMaterialResource.generate(friction: Const.Physics.Friction.mine, restitution: Const.Physics.Restitution.mine),
-                                                mode: .dynamic)
-        self.physicsMotion = PhysicsMotionComponent()
-        self.model = ModelComponent(mesh: MeshResource.generateSphere(radius: Const.Size.mine), materials: [])
+        name = Const.Name.mine
+        collision = CollisionComponent(shapes: [shape])
+        physicsBody = PhysicsBodyComponent(shapes: [shape],
+                                           mass: 1,
+                                           material: PhysicsMaterialResource.generate(friction: Const.Physics.Friction.mine, restitution: Const.Physics.Restitution.mine),
+                                           mode: .dynamic) // .kinematic currently broken...
+        physicsMotion = PhysicsMotionComponent()
+        model = ModelComponent(mesh: MeshResource.generateSphere(radius: Const.Size.mine), materials: [])
+    }
+    convenience init(_ velocityDir: SIMD3<Float>) {
+        self.init()
+        physicsMotion = PhysicsMotionComponent(linearVelocity: velocityDir, angularVelocity: .zero)
     }
 }

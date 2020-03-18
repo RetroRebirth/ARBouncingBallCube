@@ -34,7 +34,7 @@ class MyARView: ARView {
         
         // Disable AR on startup (on iOS device only)
         #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
-        self.cameraMode = .nonAR
+        cameraMode = .nonAR
         #endif
         
         // Add initial entities to anchor, then anchor to scene
@@ -73,8 +73,9 @@ class MyARView: ARView {
         #if DEBUG
         print("tapped")
         #endif
-        // Add falling entity from origin box
-        anchor.children.append(MyEntity())
+        // Shoot flying entity from origin box
+        let dir = self.ray(through: sender.location(in: self))!.1
+        anchor.children.append(MyEntity(dir))
     }
     
     @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
@@ -93,10 +94,12 @@ class MyARView: ARView {
         #endif
         // Switch between AR and VR
         #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
-        if self.cameraMode == .ar {
-            self.cameraMode = .nonAR
+        if cameraMode == .ar {
+            cameraMode = .nonAR
+            anchor.scale = SIMD3<Float>(repeating: Const.Size.vr)
         } else {
-            self.cameraMode = .ar
+            cameraMode = .ar
+            anchor.scale = SIMD3<Float>(repeating: Const.Size.ar)
         }
         #endif
     }

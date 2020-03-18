@@ -13,7 +13,7 @@ class OriginEntity: Entity, HasModel {
     required init() {
         super.init()
         
-        self.name = Const.Name.origin
-        self.model = ModelComponent(mesh: MeshResource.generateBox(size: SIMD3<Float>(repeating: Const.Size.mine)), materials: [])
+        name = Const.Name.origin
+        model = ModelComponent(mesh: MeshResource.generateBox(size: SIMD3<Float>(repeating: Const.Size.mine)), materials: [])
     }
 }
