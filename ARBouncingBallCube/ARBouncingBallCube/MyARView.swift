@@ -32,9 +32,11 @@ class MyARView: ARView {
         // Enable debug overlay
         debugOptions = .important
         
-        // Disable AR on startup (on iOS device only)
+        // Disable AR on startup (on iOS device only) OR set background to black
         #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
         cameraMode = .nonAR
+        #else
+        backgroundColor = .black
         #endif
         
         // Add initial entities to anchor, then anchor to scene
