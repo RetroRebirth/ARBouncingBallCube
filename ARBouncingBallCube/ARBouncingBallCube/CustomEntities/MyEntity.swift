@@ -20,7 +20,7 @@ class MyEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
         physicsBody = PhysicsBodyComponent(shapes: [shape],
                                            mass: 1,
                                            material: PhysicsMaterialResource.generate(friction: Const.Physics.Friction.mine, restitution: Const.Physics.Restitution.mine),
-                                           mode: .dynamic) // .kinematic currently broken...
+                                           mode: .kinematic)
         physicsMotion = PhysicsMotionComponent()
         model = ModelComponent(mesh: MeshResource.generateSphere(radius: Const.Size.mine), materials: [])
     }

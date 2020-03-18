@@ -12,7 +12,8 @@ import RealityKit
 extension SIMD3 {
     public static var up: SIMD3<Float> { get { return SIMD3<Float>(0, 1, 0) } }
     public static var down: SIMD3<Float> { get { return .up * -1 } }
-    public static var ahead: SIMD3<Float> { get { return SIMD3<Float>(0, 0, -1) } }
+    public static var behind: SIMD3<Float> { get { return SIMD3<Float>(0, 0, 1) } }
+    public static var ahead: SIMD3<Float> { get { return .behind * -1 } }
     public static var flat: SIMD3<Float> { get { return SIMD3<Float>(1, 0, 1) } }
 }
 

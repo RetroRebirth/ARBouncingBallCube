@@ -40,6 +40,13 @@ class MyARView: ARView {
         #endif
         
         // Add initial entities to anchor, then anchor to scene
+        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
+        if cameraMode == .nonAR {
+            anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
+        }
+        #else
+        anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
+        #endif
         anchor.children.append(OriginEntity())
         anchor.children.append(GroundEntity())
         scene.anchors.append(anchor)

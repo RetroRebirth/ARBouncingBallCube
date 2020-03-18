@@ -29,4 +29,7 @@ struct Const {
             static let mine:Float = 0.5
         }
     }
+    struct Camera {
+        static let far:Float = 10
+    }
 }
