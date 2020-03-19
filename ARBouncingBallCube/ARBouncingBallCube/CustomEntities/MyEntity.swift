@@ -22,7 +22,9 @@ class MyEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
                                            material: PhysicsMaterialResource.generate(friction: Const.Physics.Friction.mine, restitution: Const.Physics.Restitution.mine),
                                            mode: .kinematic)
         physicsMotion = PhysicsMotionComponent()
-        model = ModelComponent(mesh: MeshResource.generateBox(size: SIMD3<Float>(repeating: Const.Size.mine)), materials: [])
+        model = Generator.modelCovid()
+        transform.scale = SIMD3<Float>(repeating: Const.Size.mine)
+        transform.translation += .ahead
     }
     convenience init(_ velocityDir: SIMD3<Float>) {
         self.init()

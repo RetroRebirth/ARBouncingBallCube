@@ -10,6 +10,8 @@ import Foundation
 import RealityKit
 
 class Generator {
+    static var covidModel:ModelComponent?
+    
     static func myPerspectiveCamera(far:Float=Float.infinity, fieldOfViewInDegrees:Float=60, near:Float=0.01) -> PerspectiveCamera {
         let pc = PerspectiveCamera()
         
@@ -18,7 +20,6 @@ class Generator {
         pc.camera.near = near
         
         pc.name = Const.Name.camera
-        pc.transform.translation = .behind
         
         return pc
     }
@@ -30,5 +31,11 @@ class Generator {
         }
         
         return targets
+    }
+    static func modelCovid() -> ModelComponent {
+        if Generator.covidModel == nil {
+            Generator.covidModel = ((try! Entity.load(named: "covid.usdz")).children.first!.children.first! as! ModelEntity).model
+        }
+        return Generator.covidModel!
     }
 }

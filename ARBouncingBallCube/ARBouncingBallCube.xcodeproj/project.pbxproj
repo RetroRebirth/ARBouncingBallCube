@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1438FF2422E12B001B6259 /* covid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 4B1438FE2422E12B001B6259 /* covid.usdz */; };
 		4B2150102422C8E90055A6F7 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B21500F2422C8E90055A6F7 /* Generator.swift */; };
 		4B6A55052420FA0200DE9672 /* TargetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A55042420FA0200DE9672 /* TargetEntity.swift */; };
 		4B79E2532420BDC4004E7CD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B79E2522420BDC4004E7CD0 /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B1438FE2422E12B001B6259 /* covid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = covid.usdz; sourceTree = "<group>"; };
 		4B21500F2422C8E90055A6F7 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		4B6A55042420FA0200DE9672 /* TargetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetEntity.swift; sourceTree = "<group>"; };
 		4B79E24F2420BDC4004E7CD0 /* ARBouncingBallCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARBouncingBallCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +181,7 @@
 		4BCBDE4C24217CB200E57C02 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				4B1438FE2422E12B001B6259 /* covid.usdz */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				4B79E25F2420BDC5004E7CD0 /* LaunchScreen.storyboard in Resources */,
 				4B79E25C2420BDC5004E7CD0 /* Preview Assets.xcassets in Resources */,
 				4B79E2592420BDC5004E7CD0 /* Assets.xcassets in Resources */,
+				4B1438FF2422E12B001B6259 /* covid.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

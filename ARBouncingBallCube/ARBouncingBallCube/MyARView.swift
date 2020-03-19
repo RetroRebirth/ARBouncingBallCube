@@ -60,12 +60,20 @@ class MyARView: ARView {
         #endif
     }
     
-    func updated(event: SceneEvents.Update) {}
+    func updated(event: SceneEvents.Update) {
+        let origin = anchor.findEntity(named: Const.Name.origin)!
+        origin.transform = cameraTransform
+        origin.transform.translation += .ahead
+    }
     
     func collided(event: CollisionEvents.Began) {
         #if DEBUG
         print("collided \(event.entityA) and \(event.entityB)")
         #endif
+//        // TODO: Remove targets when hit
+//        if event.entityA.name == Const.Name.mine && event.entityB.name == Const.Name.target {
+//            anchor.removeChild(event.entityB)
+//        }
     }
     
     @objc func tapped(_ sender: UITapGestureRecognizer) {
