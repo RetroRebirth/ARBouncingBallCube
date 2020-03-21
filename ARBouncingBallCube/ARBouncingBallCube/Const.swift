@@ -16,6 +16,7 @@ struct Const {
         static let rc:String = "Steel Box"
         static let camera:String = "camera"
         static let covid:String = "covid.usdz"
+        static let display:String = "covid-19"
     }
     struct Size {
         static let mine:Float = 0.1

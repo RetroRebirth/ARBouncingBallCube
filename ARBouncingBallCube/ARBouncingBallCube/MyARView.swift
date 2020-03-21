@@ -37,6 +37,9 @@ class MyARView: ARView {
         backgroundColor = .black
         #endif
         
+        // TODO: Enable networking
+        scene.synchronizationService = Network.service
+        
         // Add initial entities
         #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
         if cameraMode == .nonAR {
@@ -55,6 +58,10 @@ class MyARView: ARView {
         scene.subscribe(to: CollisionEvents.Began.self, collided).store(in: &streams)
         scene.subscribe(to: CollisionEvents.Updated.self, colliding).store(in: &streams)
         scene.subscribe(to: CollisionEvents.Ended.self, uncollided).store(in: &streams)
+        scene.subscribe(to: SynchronizationEvents.OwnershipChanged.self, synced).store(in: &streams)
+        scene.subscribe(to: SynchronizationEvents.OwnershipRequest.self, requested).store(in: &streams)
+        
+        // Subscribe to interactions
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(_:)))
         doubleTap.numberOfTapsRequired = 2
@@ -110,6 +117,18 @@ class MyARView: ARView {
             let entityA:ModelEntity = event.entityA as! ModelEntity
             entityA.physicsMotion?.linearVelocity *= -1
         }
+    }
+    
+    func synced(event: SynchronizationEvents.OwnershipChanged) {
+        #if DEBUG
+        print("synced \(event)")
+        #endif
+    }
+    
+    func requested(event: SynchronizationEvents.OwnershipRequest) {
+        #if DEBUG
+        print("requested \(event)")
+        #endif
     }
     
     // MARK: Interactions

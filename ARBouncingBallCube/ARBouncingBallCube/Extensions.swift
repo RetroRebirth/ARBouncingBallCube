@@ -18,9 +18,9 @@ extension SIMD3 {
     public static var ahead: SIMD3<Float> { get { return .behind * -1 } }
     public static var rand: SIMD3<Float> { get { let r:ClosedRange<Float> = 0...1; return SIMD3<Float>(Float.random(in: r), Float.random(in: r), Float.random(in: r)) } }
     public static var randTargetPos: SIMD3<Float> { get {
-        let rx:ClosedRange<Float> = -1...1
+        let rx:ClosedRange<Float> = (-Const.Size.target)...(Const.Size.target)
         let ry:ClosedRange<Float> = rx
-        let rz:ClosedRange<Float> = (-Const.Camera.far)...(-5)
+        let rz:ClosedRange<Float> = (-Const.Camera.far + Const.Size.target)...(-Const.Size.target)
         return SIMD3<Float>(Float.random(in: rx), Float.random(in: ry), Float.random(in: rz))
         } }
 }
