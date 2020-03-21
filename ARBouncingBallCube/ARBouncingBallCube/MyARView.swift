@@ -27,7 +27,7 @@ class MyARView: ARView {
     required init(frame: CGRect) {
         super.init(frame: frame)
         
-        // Enable debug overlay
+        // Enable debug overlay by default
         debugOptions = .important
         
         // Disable AR on startup (on iOS device only) OR set background to black
@@ -37,7 +37,17 @@ class MyARView: ARView {
         backgroundColor = .black
         #endif
         
-        addInitialEntities()
+        // Add initial entities
+        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
+        if cameraMode == .nonAR {
+            anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
+        }
+        #else
+        anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
+        #endif
+        anchor.children.append(OriginEntity())
+        anchor.children.append(contentsOf: Generator.generateTargets())
+        scene.anchors.append(anchor)
         
         // Subscribe to events
         scene.subscribe(to: SceneEvents.AnchoredStateChanged.self, anchored).store(in: &streams)
@@ -46,6 +56,15 @@ class MyARView: ARView {
         scene.subscribe(to: CollisionEvents.Updated.self, colliding).store(in: &streams)
         scene.subscribe(to: CollisionEvents.Ended.self, uncollided).store(in: &streams)
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(_:)))
+        doubleTap.numberOfTapsRequired = 2
+        addGestureRecognizer(doubleTap)
+        let twoFingerTap = UITapGestureRecognizer(target: self, action: #selector(twoTapped(_:)))
+        twoFingerTap.numberOfTouchesRequired = 2
+        addGestureRecognizer(twoFingerTap)
+        let threeFingerTap = UITapGestureRecognizer(target: self, action: #selector(threeTapped(_:)))
+        threeFingerTap.numberOfTouchesRequired = 3
+        addGestureRecognizer(threeFingerTap)
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:))))
         addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(swiped(_:))))
     }
@@ -53,7 +72,7 @@ class MyARView: ARView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Interactions
+    // MARK: Events
     func anchored(event: SceneEvents.AnchoredStateChanged) {
         #if DEBUG
         print("anchored \(event)")
@@ -70,6 +89,13 @@ class MyARView: ARView {
         #if DEBUG
         print("collided \(event)")
         #endif
+        // Turn my entity red when inside trigger volume
+        if event.entityA.name == Const.Name.mine
+            && event.entityB.name == Const.Name.target {
+            let entityA:ModelEntity = event.entityA as! ModelEntity
+            entityA.model?.materials = [SimpleMaterial(color: .red,
+                                                       isMetallic: false)]
+        }
     }
     
     func colliding(event: CollisionEvents.Updated) {}
@@ -78,8 +104,15 @@ class MyARView: ARView {
         #if DEBUG
         print("uncollided \(event)")
         #endif
+        // Keep my entity in trigger volume box
+        if event.entityA.name == Const.Name.mine
+            && event.entityB.name == Const.Name.target {
+            let entityA:ModelEntity = event.entityA as! ModelEntity
+            entityA.physicsMotion?.linearVelocity *= -1
+        }
     }
     
+    // MARK: Interactions
     @objc func tapped(_ sender: UITapGestureRecognizer) {
         #if DEBUG
         print("tapped \(sender)")
@@ -89,21 +122,18 @@ class MyARView: ARView {
         anchor.children.append(Generator.myModelEntity(dir))
     }
     
-    @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
+    @objc func doubleTapped(_ sender: UITapGestureRecognizer) {
         #if DEBUG
-        print("long pressed \(sender)")
+        print("double tapped \(sender)")
         #endif
-        // Destroy all added entities
-        while let entity = anchor.findEntity(named: Const.Name.mine) {
-            anchor.removeChild(entity)
-        }
+        anchor.children.append(contentsOf: Generator.generateTargets(num: 1))
     }
     
-    @objc func swiped(_ sender: UISwipeGestureRecognizer) {
+    @objc func twoTapped(_ sender: UITapGestureRecognizer) {
         #if DEBUG
-        print("swiped \(sender)")
+        print("two tapped \(sender)")
         #endif
-        // Switch between AR and VR
+        // Switch between AR and VR views (iOS only)
         #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
         if cameraMode == .ar {
             cameraMode = .nonAR
@@ -117,18 +147,49 @@ class MyARView: ARView {
         #endif
     }
     
-    // MARK: Functions
-    /// Add initial entities to anchor, then anchor to scene.
-    func addInitialEntities() {
-        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
-        if cameraMode == .nonAR {
-            anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
-        }
-        #else
-        anchor.children.append(Generator.myPerspectiveCamera(far: Const.Camera.far))
+    @objc func threeTapped(_ sender: UITapGestureRecognizer) {
+        #if DEBUG
+        print("three tapped \(sender)")
         #endif
-        anchor.children.append(OriginEntity())
-        anchor.children.append(contentsOf: Generator.generateTargets())
-        scene.anchors.append(anchor)
+        // Toggle debug overlay (iOS only)
+        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
+        cycleDebugOverlay()
+        #endif
+    }
+    
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
+        #if DEBUG
+        print("long pressed \(sender)")
+        #endif
+        // Toggle debug overlay (macOS only)
+        #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
+        #else
+        cycleDebugOverlay()
+        #endif
+    }
+    
+    @objc func swiped(_ sender: UISwipeGestureRecognizer) {
+        #if DEBUG
+        print("swiped \(sender)")
+        #endif
+        // Destroy all added entities
+        while let entity = anchor.findEntity(named: Const.Name.mine) {
+            anchor.removeChild(entity)
+        }
+    }
+    
+    // MARK: Functions
+    /// Cycles debug overlays between important, on, and off
+    func cycleDebugOverlay() {
+        switch debugOptions {
+        case .important:
+            debugOptions = .all
+        case .all:
+            debugOptions = .none
+        case .none:
+            debugOptions = .important
+        default:
+            fatalError("Unexpected debug overlay \(debugOptions)")
+        }
     }
 }

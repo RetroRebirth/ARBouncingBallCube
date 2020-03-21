@@ -58,7 +58,7 @@ class Generator {
     }
     
     // MARK: Functions
-    static func generateTargets(num:Int=Const.Num.targets) -> [TriggerVolume] {
+    static func generateTargets(num:Int=Const.Num.initialTargets) -> [TriggerVolume] {
         var targets:[TriggerVolume] = []
         
         for _ in 0..<num {

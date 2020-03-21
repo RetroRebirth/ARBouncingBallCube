@@ -33,6 +33,6 @@ struct Const {
         static let far:Float = 10
     }
     struct Num {
-        static let targets:Int = 1
+        static let initialTargets:Int = 1
     }
 }
