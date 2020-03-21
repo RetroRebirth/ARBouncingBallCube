@@ -14,6 +14,7 @@ import UIKit
 #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
 import ARKit
 #endif
+import MultipeerConnectivity
 
 class MyARView: ARView {
     var streams:[AnyCancellable] = []
@@ -38,6 +39,11 @@ class MyARView: ARView {
         #endif
         
         // TODO: Enable networking
+        Network.peerID = MCPeerID(displayName: Const.Name.display)
+        Network.advertiser = NetworkAdvertiser(peer: Network.peerID, discoveryInfo: nil, serviceType: Const.Name.display)
+        Network.browser = NetworkBrowser(peer: Network.peerID, serviceType: Const.Name.display)
+        Network.session = NetworkSession(peer: Network.peerID, securityIdentity: nil, encryptionPreference: .required)
+        Network.service = try! MultipeerConnectivityService(session: Network.session)
         scene.synchronizationService = Network.service
         
         // Add initial entities

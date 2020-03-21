@@ -20,7 +20,7 @@ extension SIMD3 {
     public static var randTargetPos: SIMD3<Float> { get {
         let rx:ClosedRange<Float> = (-Const.Size.target)...(Const.Size.target)
         let ry:ClosedRange<Float> = rx
-        let rz:ClosedRange<Float> = (-Const.Camera.far + Const.Size.target)...(-Const.Size.target)
+        let rz:ClosedRange<Float> = (-Const.Camera.far + Const.Size.target)...(-Const.Size.target * 2)
         return SIMD3<Float>(Float.random(in: rx), Float.random(in: ry), Float.random(in: rz))
         } }
 }
