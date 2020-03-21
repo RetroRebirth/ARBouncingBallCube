@@ -61,9 +61,6 @@ class MyARView: ARView {
     }
     
     func updated(event: SceneEvents.Update) {
-        #if DEBUG
-        print("updated \(event)")
-        #endif
         let origin = anchor.findEntity(named: Const.Name.origin)!
         origin.transform = cameraTransform
         origin.transform.translation += .ahead
