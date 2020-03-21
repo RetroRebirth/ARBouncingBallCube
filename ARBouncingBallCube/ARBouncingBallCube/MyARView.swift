@@ -45,6 +45,8 @@ class MyARView: ARView {
         scene.subscribe(to: SceneEvents.AnchoredStateChanged.self, anchored).store(in: &streams)
         scene.subscribe(to: SceneEvents.Update.self, updated).store(in: &streams)
         scene.subscribe(to: CollisionEvents.Began.self, collided).store(in: &streams)
+        scene.subscribe(to: CollisionEvents.Updated.self, colliding).store(in: &streams)
+        scene.subscribe(to: CollisionEvents.Ended.self, uncollided).store(in: &streams)
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:))))
         addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(swiped(_:))))
@@ -69,6 +71,18 @@ class MyARView: ARView {
     func collided(event: CollisionEvents.Began) {
         #if DEBUG
         print("collided \(event)")
+        #endif
+    }
+    
+    func colliding(event: CollisionEvents.Updated) {
+        #if DEBUG
+        print("colliding \(event)")
+        #endif
+    }
+    
+    func uncollided(event: CollisionEvents.Ended) {
+        #if DEBUG
+        print("uncollided \(event)")
         #endif
     }
     
