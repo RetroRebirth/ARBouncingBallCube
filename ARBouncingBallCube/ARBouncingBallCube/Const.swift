@@ -25,17 +25,14 @@ struct Const {
         static let vr:Float = 1
     }
     struct Physics {
-        struct Friction {
-            static let mine:Float = 0.5
-        }
-        struct Restitution {
-            static let mine:Float = 0.5
+        struct Mass {
+            static let mine:Float = 1
         }
     }
     struct Camera {
         static let far:Float = 10
     }
     struct Num {
-        static let targets:Int = 3
+        static let targets:Int = 1
     }
 }

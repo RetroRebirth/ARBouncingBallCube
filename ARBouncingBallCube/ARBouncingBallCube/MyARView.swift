@@ -16,13 +16,11 @@ import ARKit
 #endif
 
 class MyARView: ARView {
-    /// Class consts
-    let anchor:AnchorEntity = AnchorEntity(world: .zero)
-    
-    /// Class vars
     var streams:[AnyCancellable] = []
     
-    /// Constructors
+    let anchor:AnchorEntity = AnchorEntity(world: .zero)
+    
+    // MARK: Constructors
     convenience init() {
         self.init(frame: .zero)
     }
@@ -55,7 +53,7 @@ class MyARView: ARView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// Functions
+    // MARK: Interactions
     func anchored(event: SceneEvents.AnchoredStateChanged) {
         #if DEBUG
         print("anchored \(event)")
@@ -74,11 +72,7 @@ class MyARView: ARView {
         #endif
     }
     
-    func colliding(event: CollisionEvents.Updated) {
-        #if DEBUG
-        print("colliding \(event)")
-        #endif
-    }
+    func colliding(event: CollisionEvents.Updated) {}
     
     func uncollided(event: CollisionEvents.Ended) {
         #if DEBUG
@@ -92,7 +86,7 @@ class MyARView: ARView {
         #endif
         // Shoot flying entity from origin box
         let dir = self.ray(through: sender.location(in: self))!.1
-        anchor.children.append(MyEntity(dir))
+        anchor.children.append(Generator.myModelEntity(dir))
     }
     
     @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
@@ -123,6 +117,7 @@ class MyARView: ARView {
         #endif
     }
     
+    // MARK: Functions
     /// Add initial entities to anchor, then anchor to scene.
     func addInitialEntities() {
         #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)

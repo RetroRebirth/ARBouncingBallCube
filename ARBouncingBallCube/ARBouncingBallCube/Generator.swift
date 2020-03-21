@@ -10,8 +10,16 @@ import Foundation
 import RealityKit
 
 class Generator {
-    static var covidModel:ModelComponent?
+    // MARK: Singletons
+    private static var meshCovid:MeshResource?
+    static func meshCovidSingleton() -> MeshResource {
+        if Generator.meshCovid == nil {
+            Generator.meshCovid = ((try! Entity.load(named: Const.Name.covid)).children.first!.children.first! as! ModelEntity).model?.mesh
+        }
+        return Generator.meshCovid!
+    }
     
+    // MARK: Constructors
     static func myPerspectiveCamera(far:Float=Float.infinity, fieldOfViewInDegrees:Float=60, near:Float=0.01) -> PerspectiveCamera {
         let pc = PerspectiveCamera()
         
@@ -23,19 +31,40 @@ class Generator {
         
         return pc
     }
-    static func generateTargets(num:Int=Const.Num.targets) -> [TargetEntity] {
-        var targets:[TargetEntity] = []
+    static func myTriggerVolume(_ position:SIMD3<Float>) -> TriggerVolume {
+        let tv = TriggerVolume(shape: .generateBox(size: SIMD3<Float>(repeating: Const.Size.target)),
+                               filter: CollisionFilter(group: .all,
+                                                       mask: .all))
+        
+        tv.name = Const.Name.target
+        tv.transform.translation = position
+        
+        return tv
+    }
+    static func myModelEntity(_ velocityDir: SIMD3<Float>) -> ModelEntity {
+        let me = ModelEntity(mesh: Generator.meshCovidSingleton(),
+                             materials: [SimpleMaterial(color: .green,
+                                                        isMetallic: false)],
+                             collisionShape: .generateSphere(radius: Const.Size.mine),
+                             mass: Const.Physics.Mass.mine)
+        
+        me.name = Const.Name.mine
+        me.transform.scale = SIMD3<Float>(repeating: Const.Size.mine)
+        me.transform.translation += .ahead
+        me.physicsBody?.mode = .kinematic
+        me.physicsMotion = PhysicsMotionComponent(linearVelocity: velocityDir, angularVelocity: .zero)
+        
+        return me
+    }
+    
+    // MARK: Functions
+    static func generateTargets(num:Int=Const.Num.targets) -> [TriggerVolume] {
+        var targets:[TriggerVolume] = []
         
         for _ in 0..<num {
-            targets.append(TargetEntity())
+            targets.append(Generator.myTriggerVolume(.randTargetPos))
         }
         
         return targets
-    }
-    static func modelCovid() -> ModelComponent {
-        if Generator.covidModel == nil {
-            Generator.covidModel = ((try! Entity.load(named: Const.Name.covid)).children.first!.children.first! as! ModelEntity).model
-        }
-        return Generator.covidModel!
     }
 }
