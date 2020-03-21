@@ -42,7 +42,7 @@ class MyARView: ARView {
         addInitialEntities()
         
         // Subscribe to events
-        scene.subscribe(to: SceneEvents.AnchoredStateChanged.self, anchorStateChanged).store(in: &streams)
+        scene.subscribe(to: SceneEvents.AnchoredStateChanged.self, anchored).store(in: &streams)
         scene.subscribe(to: SceneEvents.Update.self, updated).store(in: &streams)
         scene.subscribe(to: CollisionEvents.Began.self, collided).store(in: &streams)
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
@@ -54,13 +54,16 @@ class MyARView: ARView {
     }
     
     /// Functions
-    func anchorStateChanged(event: SceneEvents.AnchoredStateChanged) {
+    func anchored(event: SceneEvents.AnchoredStateChanged) {
         #if DEBUG
-        print("anchored \(event.isAnchored) \(event.anchor)")
+        print("anchored \(event)")
         #endif
     }
     
     func updated(event: SceneEvents.Update) {
+        #if DEBUG
+        print("updated \(event)")
+        #endif
         let origin = anchor.findEntity(named: Const.Name.origin)!
         origin.transform = cameraTransform
         origin.transform.translation += .ahead
@@ -68,17 +71,13 @@ class MyARView: ARView {
     
     func collided(event: CollisionEvents.Began) {
         #if DEBUG
-        print("collided \(event.entityA) and \(event.entityB)")
+        print("collided \(event)")
         #endif
-//        // TODO: Remove targets when hit
-//        if event.entityA.name == Const.Name.mine && event.entityB.name == Const.Name.target {
-//            anchor.removeChild(event.entityB)
-//        }
     }
     
     @objc func tapped(_ sender: UITapGestureRecognizer) {
         #if DEBUG
-        print("tapped")
+        print("tapped \(sender)")
         #endif
         // Shoot flying entity from origin box
         let dir = self.ray(through: sender.location(in: self))!.1
@@ -87,7 +86,7 @@ class MyARView: ARView {
     
     @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
         #if DEBUG
-        print("long pressed")
+        print("long pressed \(sender)")
         #endif
         // Destroy all added entities
         while let entity = anchor.findEntity(named: Const.Name.mine) {
@@ -97,7 +96,7 @@ class MyARView: ARView {
     
     @objc func swiped(_ sender: UISwipeGestureRecognizer) {
         #if DEBUG
-        print("swiped")
+        print("swiped \(sender)")
         #endif
         // Switch between AR and VR
         #if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
