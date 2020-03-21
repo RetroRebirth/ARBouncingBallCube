@@ -198,7 +198,7 @@ class MyARView: ARView {
     }
     
     // MARK: Functions
-    /// Cycles debug overlays between important, on, and off
+    /// Cycles debug overlays between `.important`, `.all`, and `.none`
     func cycleDebugOverlay() {
         switch debugOptions {
         case .important:
