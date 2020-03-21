@@ -16,7 +16,6 @@ extension SIMD3 {
     public static var left: SIMD3<Float> { get { return .right * -1 } }
     public static var behind: SIMD3<Float> { get { return SIMD3<Float>(0, 0, 1) } }
     public static var ahead: SIMD3<Float> { get { return .behind * -1 } }
-    public static var flat: SIMD3<Float> { get { return SIMD3<Float>(1, 0, 1) } }
     public static var rand: SIMD3<Float> { get { let r:ClosedRange<Float> = 0...1; return SIMD3<Float>(Float.random(in: r), Float.random(in: r), Float.random(in: r)) } }
     public static var randTargetPos: SIMD3<Float> { get {
         let rx:ClosedRange<Float> = -1...1

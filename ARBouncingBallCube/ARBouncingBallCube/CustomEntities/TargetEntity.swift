@@ -13,7 +13,7 @@ class TargetEntity: Entity, HasPhysics, HasPhysicsBody, HasCollision, HasModel {
     required init() {
         super.init()
         
-        let shape = ShapeResource.generateBox(size: .flat * Const.Size.target)
+        let shape = ShapeResource.generateBox(size: SIMD3<Float>(repeating: Const.Size.target))
         
         name = Const.Name.target
         collision = CollisionComponent(shapes: [shape])

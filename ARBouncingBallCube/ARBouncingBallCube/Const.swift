@@ -15,11 +15,12 @@ struct Const {
         static let target:String = "target"
         static let rc:String = "Steel Box"
         static let camera:String = "camera"
+        static let covid:String = "covid.usdz"
     }
     struct Size {
         static let mine:Float = 0.1
         static let origin:Float = 0.1
-        static let target:Float = 0.5
+        static let target:Float = 1
         static let ar:Float = 0.1
         static let vr:Float = 1
     }
@@ -33,5 +34,8 @@ struct Const {
     }
     struct Camera {
         static let far:Float = 10
+    }
+    struct Num {
+        static let targets:Int = 3
     }
 }

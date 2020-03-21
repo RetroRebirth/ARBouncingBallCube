@@ -23,7 +23,7 @@ class Generator {
         
         return pc
     }
-    static func generateTargets(num:Int=10) -> [TargetEntity] {
+    static func generateTargets(num:Int=Const.Num.targets) -> [TargetEntity] {
         var targets:[TargetEntity] = []
         
         for _ in 0..<num {
@@ -34,7 +34,7 @@ class Generator {
     }
     static func modelCovid() -> ModelComponent {
         if Generator.covidModel == nil {
-            Generator.covidModel = ((try! Entity.load(named: "covid.usdz")).children.first!.children.first! as! ModelEntity).model
+            Generator.covidModel = ((try! Entity.load(named: Const.Name.covid)).children.first!.children.first! as! ModelEntity).model
         }
         return Generator.covidModel!
     }
